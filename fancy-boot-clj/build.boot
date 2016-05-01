@@ -15,6 +15,15 @@
             verb (if (:pluralize updated-thing-map) "are" "is")]
         (println "My" (:thing updated-thing-map) verb "on fire!")))))
 
+(deftask gnomes
+  "Announces that something is overrun by gnomes."
+  []
+  (fn middleware [next-handler]
+    (fn handler [thing-map]
+      (let [updated-thing-map (next-handler thing-map)
+            verb (if (:pluralize updated-thing-map) "are" "is")]
+        (println "My" (:thing updated-thing-map) verb "overrun by gnomes!")))))
+
 (deftask foo
   "Fooey"
   [f foo FOO=BAR:BAZ #{[kw sym str]} "The foo options."]
